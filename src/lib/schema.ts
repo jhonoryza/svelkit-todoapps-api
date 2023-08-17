@@ -31,17 +31,19 @@ export const users = mysqlTable('users', {
 	name: varchar('username', { length: 255 }).notNull(),
 	email: varchar('email', { length: 255 }).notNull().unique(),
 	password: varchar('password', { length: 255 }).notNull(),
-	updated_at: timestamp('updated_at').defaultNow(),
-    created_at: timestamp('created_at').defaultNow()
+	created_at: timestamp('created_at').defaultNow().notNull(),
+	updated_at: timestamp('updated_at').defaultNow().notNull().onUpdateNow()
 });
 
 // Table todos
 export const todos = mysqlTable('todos', {
 	id: primary('id', { type: 'bigint' }),
-    user_id: unsignedBigint('user_id').notNull().references(() => users.id, { onDelete: 'cascade', onUpdate: 'cascade' }),
+	user_id: unsignedBigint('user_id')
+		.notNull()
+		.references(() => users.id, { onDelete: 'cascade', onUpdate: 'cascade' }),
 	title: varchar('title', { length: 255 }).notNull(),
-    description: varchar('description', { length: 255 }),
-    order: unsignedBigint('order').notNull(),
-	created_at: timestamp('created_at').defaultNow(),
-	updated_at: timestamp('updated_at').defaultNow()
+	description: varchar('description', { length: 255 }),
+	order: unsignedBigint('order').notNull(),
+	created_at: timestamp('created_at').defaultNow().notNull(),
+	updated_at: timestamp('updated_at').defaultNow().notNull().onUpdateNow()
 });
