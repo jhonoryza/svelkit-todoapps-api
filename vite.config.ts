@@ -1,9 +1,14 @@
 import { sveltekit } from '@sveltejs/kit/vite';
-import { defineConfig } from 'vitest/config';
+import { defineConfig, loadEnv } from 'vite';
 
-export default defineConfig({
-	plugins: [sveltekit()],
-	test: {
-		include: ['src/**/*.{test,spec}.{js,ts}']
-	}
+export default defineConfig(({ mode }) => {
+	const env = loadEnv(mode, process.cwd(), '');
+	return {
+		plugins: [sveltekit()],
+		server: {
+			port: Number(env.APP_PORT) || 5173,
+			host: env.APP_HOST || `localhost`,
+			https: false
+		}
+	};
 });
