@@ -1,7 +1,7 @@
 import type { Config } from 'drizzle-kit';
 import { loadEnv } from 'vite';
 
-const env = loadEnv(import.meta.env.MODE, process.cwd(), '');
+const env = loadEnv('development', process.cwd(), '');
 
 export default {
 	schema: 'src/lib/schema.ts',
