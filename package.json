@@ -36,7 +36,9 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"@types/joi": "^17.2.3",
 		"drizzle-orm": "^0.28.2",
+		"joi": "^17.9.2",
 		"mysql2": "^3.6.0"
 	}
 }
