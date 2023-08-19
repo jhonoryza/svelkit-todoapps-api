@@ -3,6 +3,7 @@ import { registerRequest } from '$lib/request/register.js';
 import { users } from '$lib/schema.js';
 import { json } from '@sveltejs/kit';
 import { eq } from 'drizzle-orm';
+import bcrypt from 'bcrypt';
 
 export async function POST({ request }) {
     const { name, email, password } = await request.json();
@@ -20,11 +21,11 @@ export async function POST({ request }) {
             message: 'user already exist',
         }, { status: 400 });
     }
-
+    const hashPassword = await bcrypt.hash(password, 10);
     const user = await db.insert(users).values({
         name: name,
         email : email,
-        password : password
+        password : hashPassword
     })
 
     return json ({

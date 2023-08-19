@@ -20,6 +20,8 @@
 		"@playwright/test": "^1.28.1",
 		"@sveltejs/adapter-auto": "^2.0.0",
 		"@sveltejs/kit": "^1.20.4",
+		"@types/bcrypt": "^5.0.0",
+		"@types/joi": "^17.2.3",
 		"@typescript-eslint/eslint-plugin": "^5.45.0",
 		"@typescript-eslint/parser": "^5.45.0",
 		"drizzle-kit": "^0.19.12",
@@ -36,7 +38,7 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"@types/joi": "^17.2.3",
+		"bcrypt": "^5.1.1",
 		"drizzle-orm": "^0.28.2",
 		"joi": "^17.9.2",
 		"mysql2": "^3.6.0"
