@@ -9,6 +9,7 @@ this repo is an example implementation to create restfull api with svelkit and a
 - drizzle-orm (orm)
 - drizzle-kit (orm cli helper)
 - mysql2 (mysql driver)
+- joi (validation package)
 
 ## Developing
 
