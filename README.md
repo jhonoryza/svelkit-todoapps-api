@@ -11,6 +11,7 @@ this repo is an example implementation to create restfull api with svelkit and a
 - mysql2 (mysql driver)
 - joi (validation package)
 - bcrypt (hash package)
+- winston (logger package)
 
 ## Developing
 
