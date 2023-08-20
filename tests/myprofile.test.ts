@@ -19,6 +19,6 @@ test.describe('test GET myprofile api', () => {
 		});
 		const json = await res.json();
 		expect(res.status()).toBe(200);
-		expect(json.message).toBe('myprofile successfully');
+		expect(json.message).toBe('get user profile successfully');
 	});
 });
