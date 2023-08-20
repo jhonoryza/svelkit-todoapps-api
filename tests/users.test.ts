@@ -8,7 +8,7 @@ test.describe('test GET users api', () => {
 		await db.execute(sql`set FOREIGN_KEY_CHECKS=0`);
 		await db.execute(sql`truncate users`);
 		await db.execute(sql`set FOREIGN_KEY_CHECKS=1`);
-		userFactory(10);
+		await userFactory(10);
 	});
 
 	test('default list is works', async ({ request }) => {

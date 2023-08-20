@@ -12,6 +12,7 @@ this repo is an example implementation to create restfull api with svelkit and a
 - joi (validation package)
 - bcrypt (hash package)
 - winston (logger package)
+- uuid (for generate token)
 
 ## Developing
 
