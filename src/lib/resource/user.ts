@@ -1,12 +1,5 @@
 import { mysqlDatetimeUtc } from "$lib/util";
-
-type user = {
-    id: number;
-    name: string;
-    email: string;
-    updated_at: Date;
-    created_at: Date;
-}
+import type { user } from "$lib/model/user";
 
 type result = {
 	id: number;

@@ -21,6 +21,7 @@ test.describe('test POST login api', () => {
 		const json = await res.json();
 		expect(res.status()).toBe(200);
 		expect(json.token).not.toBeNull();
+		expect(json.message).toBe('login successfully');
 	});
 
 	test('it can validate wrong email', async ({ request }) => {

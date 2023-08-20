@@ -20,7 +20,7 @@ test.describe('test POST register api', () => {
 		});
 		const json = await res.json();
 		expect(res.status()).toBe(201);
-		expect(json.message).toEqual('user created successfully');
+		expect(json.message).toEqual('register successfully');
 	});
 
 	test('it can validate exists user', async ({ request }) => {

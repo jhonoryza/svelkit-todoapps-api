@@ -29,7 +29,7 @@ export async function POST({ request }) {
 	return json(
 		{
 			data: user,
-			message: 'user created successfully',
+			message: 'register successfully',
 			code: 201
 		},
 		{ status: 201 }
