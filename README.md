@@ -19,7 +19,8 @@ this repo is an example implementation to create restfull api with svelkit and a
 ```bash
 pnpm install
 cp .env.example .env
-pnpm migrate
+pnpm migration:generate
+pnpm migration:push #choose env development
 pnpm run dev
 ```
 
@@ -27,10 +28,12 @@ notes:
 
 - check .env and create database according to your development environment
 - check .env.test before running test and create database according test environment
+- recommended to use different database for development and testing
 
 ## Testing
 
 ```bash
-pnpm run migrate:test
+pnpm migration:generate
+pnpm migration:push #choose env test
 pnpm run test
 ```
