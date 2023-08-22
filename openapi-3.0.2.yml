@@ -153,6 +153,29 @@ paths:
                   code:
                     type: integer
                     example: 200
+  /users:
+    get:
+      tags: [User]
+      summary: Get all users
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: get all users successfully
+                  code:
+                    type: integer
+                    example: 200
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/User'
+
   /authenticated/myprofile:
     get:
       tags: [User]
@@ -193,13 +216,223 @@ paths:
                     type: integer
                     example: 200
                   data:
-                    type: object
-                    properties:
-                      schema:
-                        $ref: '#/components/schemas/User'
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/User'
+  /authenticated/todos:
+    get:
+      tags: [Todo]
+      summary: Get user todos
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: header
+          name: Authorization
+          schema:
+            type: string
+            example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
+      responses:
+        '401':
+          description: Unauthenticated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: get user todos successfully
+                  code:
+                    type: integer
+                    example: 200
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Todo'
+    post:
+      tags: [Todo]
+      summary: Create a new todo
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: header
+          name: Authorization
+          schema:
+            type: string
+            example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Todo'
+      responses:
+        '401':
+          description: Unauthenticated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: title is required
+                  code:
+                    type: integer
+                    example: 400
+
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: create todo successfully
+                  code:
+                    type: integer
+                    example: 201
+  
+  /unauthenticated/todos/{id}:
+    put:
+      tags: [Todo]
+      summary: Update a todo
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: header
+          name: Authorization
+          schema:
+            type: string
+            example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+            example: 1
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Todo'
+      responses:
+        '401':
+          description: Unauthenticated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: title is required
+                  code:
+                    type: integer
+                    example: 400
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: update todo successfully
+                  code:
+                    type: integer
+                    example: 200
+    delete:
+      tags: [Todo]
+      summary: Delete a todo
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: header
+          name: Authorization
+          schema:
+            type: string
+            example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+            example: 1
+      responses:
+        '401':
+          description: Unauthenticated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: delete todo successfully
+                  code:
+                    type: integer
+                    example: 200
 
 components:
   schemas:
+    Todo:
+      type: object
+      properties:
+        title:
+          type: string
+          example: Todo title
+        description:
+          type: string
+          example: Todo description
+        order:
+          type: integer
+          example: 1
+
     User:
       type: object
       properties:
