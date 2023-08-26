@@ -315,7 +315,7 @@ paths:
                     type: integer
                     example: 201
   
-  /unauthenticated/todos/{id}:
+  /authenticated/todos/{id}:
     put:
       tags: [Todo]
       summary: Update a todo
@@ -419,6 +419,10 @@ paths:
                     example: 200
 
 components:
+  securitySchemes:
+    bearerAuth:            # arbitrary name for the security scheme
+      type: http
+      scheme: bearer
   schemas:
     Todo:
       type: object
@@ -448,4 +452,3 @@ components:
         token:
           type: string
           example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
-
